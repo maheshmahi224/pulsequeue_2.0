@@ -10,7 +10,15 @@ db = None
 async def connect_db():
     global client, db
     try:
-        client = AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+        client = AsyncIOMotorClient(
+            MONGO_URI,
+            serverSelectionTimeoutMS=5000,
+            connectTimeoutMS=3000,
+            socketTimeoutMS=8000,
+            minPoolSize=2,
+            maxPoolSize=20,
+            retryWrites=True,
+        )
         db = client[MONGO_DB]
         await client.admin.command("ping")
         logger.info("MongoDB connected successfully")

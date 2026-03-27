@@ -1,0 +1,16 @@
+{
+  "pythonVersion": "3.14",
+  "typeCheckingMode": "off",
+  "useLibraryCodeForTypes": true,
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportUndefinedVariable": "none",
+  "venvPath": "${env:LOCALAPPDATA}\\Programs\\Python\\Python314",
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "pythonVersion": "3.14",
+      "extraPaths": []
+    }
+  ]
+}
