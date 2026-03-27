@@ -1,0 +1,61 @@
+Blood pressure guidelines:
+- Normal: systolic < 120, diastolic < 80
+- Elevated: systolic 120-129, diastolic < 80  
+- Stage 1 hypertension: systolic 130-139, diastolic 80-89
+- Stage 2 hypertension: systolic >= 140, diastolic >= 90
+- Hypertensive crisis: systolic > 180 or diastolic > 120
+- Hypertensive crisis requires immediate medical attention
+
+Pulse oximetry (SpO2) clinical guidelines:
+- Normal: 95-100%
+- Acceptable: 90-95%
+- Concerning: 88-90% requires supplemental oxygen
+- Critical: below 88% requires immediate intervention
+- Oxygen delivery should begin when SpO2 drops below 94%
+
+Blood glucose reference ranges:
+- Fasting normal: 70-99 mg/dL
+- Postprandial normal (2hr): below 140 mg/dL
+- Prediabetes fasting: 100-125 mg/dL
+- Diabetes fasting: above 126 mg/dL
+- Diabetic emergency hypoglycemia: below 70 mg/dL (requires immediate glucose)
+- Hyperglycemic crisis: above 400 mg/dL (DKA or HHS)
+- Severe hypoglycemia: below 54 mg/dL (IV dextrose required)
+
+Emergency triage protocols:
+- Chest pain: Always immediate assessment, ECG within 10 minutes
+- STEMI protocol: door-to-balloon time under 90 minutes
+- Stroke protocol: CT scan within 25 minutes, thrombolytics within 4.5 hours of onset
+- Respiratory distress: Immediate oxygen, monitor SpO2 continuously
+- Anaphylaxis: Epinephrine IM immediately, IV access
+- Sepsis: Lactate, blood cultures, antibiotics within 1 hour, fluids
+
+Cardiac risk factors:
+- Age over 65 significantly increases cardiovascular risk
+- Hypertension doubles cardiovascular event risk
+- Diabetes increases cardiovascular risk 2-4 fold
+- History of MI increases risk of recurrent events by 20%
+- Smoking, obesity, hyperlipidemia are modifiable risk factors
+- Male gender and family history are non-modifiable risk factors
+
+Respiratory emergency indicators:
+- Breathing rate over 30/min indicates severe respiratory distress
+- Accessory muscle use suggests significant respiratory compromise
+- Cyanosis is a late sign of hypoxia
+- Asthma attack: peak flow below 50% predicted is severe
+- COPD exacerbation: increased work of breathing, worsening hypoxemia
+- Pneumonia: fever, productive cough, decreased breath sounds
+
+Neurological emergency signs:
+- FAST: Face drooping, Arm weakness, Speech difficulty, Time to call emergency
+- Sudden severe headache (thunderclap) suggests subarachnoid hemorrhage
+- Altered consciousness requires immediate assessment
+- Seizures: protect airway, position safely, time the event
+- TIA symptoms resolve within 24 hours but indicate high stroke risk
+
+Diabetic emergencies:
+- Hypoglycemia: shakiness, confusion, sweating, heart palpitations
+- DKA: fruity breath, abdominal pain, vomiting, Kussmaul breathing
+- HHS: extreme thirst, frequent urination, confusion, no ketones
+- DKA treatment: fluid replacement, insulin, electrolyte monitoring
+- HHS: gradual fluid replacement, insulin carefully titrated

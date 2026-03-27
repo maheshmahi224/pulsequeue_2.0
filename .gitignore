@@ -1,0 +1,16 @@
+﻿node_modules/
+.next/
+out/
+build/
+*.log
+*.zip
+*.msi
+node-v20.11.1-win-x64/
+mongodb-win32-x86_64-windows-7.0.5/
+data/
+backend/.env
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
