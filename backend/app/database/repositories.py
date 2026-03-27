@@ -61,8 +61,16 @@ async def get_report(report_id: str) -> Optional[dict]:
 
 async def get_patient_reports(patient_id: str) -> List[dict]:
     db = get_db()
-    cursor = db.reports.find({"patient_id": patient_id}).sort("created_at", -1).limit(10)
-    docs = await cursor.to_list(length=10)
+    cursor = db.reports.find({"patient_id": patient_id}).sort("created_at", -1)
+    docs = await cursor.to_list(length=100)
+    for d in docs:
+        d.pop("_id", None)
+    return docs
+
+async def get_resolved_reports() -> List[dict]:
+    db = get_db()
+    cursor = db.reports.find({"status": {"$in": ["admitted", "referred", "completed"]}}).sort("last_updated", -1)
+    docs = await cursor.to_list(length=200)
     for d in docs:
         d.pop("_id", None)
     return docs

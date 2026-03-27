@@ -10,6 +10,7 @@ import {
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/dashboard/queue", label: "Patient Queue", icon: Users },
+  { href: "/dashboard/resolved", label: "Resolved Patients", icon: Activity },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart2 },
   { href: "/dashboard/reports", label: "Reports", icon: FileText },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },

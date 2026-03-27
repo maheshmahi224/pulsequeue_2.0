@@ -1,0 +1,137 @@
+PULSEQUEUE RAG REFERENCE — CRITICAL MULTI-SYSTEM FAILURE CASE
+Source: MedPath Diagnostics | Report ID: MPD-2026-034999
+Classification: CRITICAL / ICU / IMMEDIATE TRIAGE — RISK SCORE: 100/100
+
+=== PATIENT PROFILE ===
+Age: 52 years | Gender: Male | Status: ICU — Bed 4 (CRITICAL)
+Ward: ICU | Emergency Admission | Non-Fasting
+
+=== CRITICAL DIAGNOSES (ACTIVE SIMULTANEOUSLY) ===
+1. BACTERIAL MENINGITIS (Pneumococcal) — CSF Gram +ve diplococci, 4,200 cells, glucose 18 mg/dL, protein 820 mg/dL. IV ceftriaxone + dexamethasone STAT.
+2. SEPTIC SHOCK — Polymicrobial (MDR Klebsiella + ESBL E.coli + MRSA) — qSOFA 3/3, SOFA 18/24, lactate 8.2 mmol/L, BP 72/44 mmHg.
+3. MASSIVE STEMI / CARDIOGENIC SHOCK — Troponin-I 24.8 ng/mL (620x ULN), CK-MB 188 IU/L, BNP 4,820 pg/mL. Emergency cathlab.
+4. SEVERE ARDS — P/F Ratio 80 (<100 = Severe Berlin criteria), pH 7.18, PaO2 48 mmHg on 60% FiO2, SaO2 72%. Mechanical ventilation mandatory.
+5. DIABETIC KETOACIDOSIS (DKA) + HYPEROSMOLAR HYPERGLYCAEMIC STATE (HHS) — Glucose 648, ketones 4+, HbA1c 13.8%, osmolality 342.
+6. THYROID STORM — TSH 0.02 (suppressed), fT3 8.8 pg/mL, fT4 4.82 ng/dL, fever 40.2°C, Burch-Wartofsky score >45.
+7. ADDISONIAN CRISIS / ADRENAL INSUFFICIENCY — Cortisol 2.4 mcg/dL (critically low), ACTH 8 pg/mL.
+8. ACUTE LIVER FAILURE — AST 4,280 IU/L, ALT 3,620 IU/L, Bilirubin 24.8 mg/dL, Albumin 1.4 g/dL, Ammonia 188 mcmol/L.
+9. AKI STAGE 3 / RHABDOMYOLYSIS / ATN — Creatinine 8.4 mg/dL, eGFR 7 mL/min, K+ 6.9 mEq/L, urine output 180 mL/24hr. EMERGENCY DIALYSIS.
+10. DISSEMINATED INTRAVASCULAR COAGULATION (DIC) — D-Dimer 18.4, Fibrinogen 88, PT 38s, INR 3.4, APTT 74.2s.
+11. SEVERE THROMBOCYTOPAENIA — Platelets 28,000, Hb 5.8 g/dL. 4 units pRBC + platelet transfusion.
+12. SUSPECTED HAEMATOLOGICAL MALIGNANCY — Blast cells in PBS, AFP 8,420 ng/mL, CA 19-9 4,180 U/mL, M-spike on SPEP.
+
+=== CRITICAL LAB VALUES (KEY REFERENCE THRESHOLDS) ===
+
+CBC:
+  Haemoglobin: 5.8 g/dL [CRITICAL <7.0 requires transfusion]
+  WBC: 32,800 cells/cumm [CRITICAL >30,000 — sepsis/malignancy]
+  Platelets: 28,000 [CRITICAL <50,000 — bleeding risk]
+  Immature Granulocytes: 8% [CRITICAL >5% — bone marrow emergency]
+  Blast cells on smear: PRESENT [CRITICAL — haematology emergency]
+
+COAGULATION:
+  PT: 38.4s [CRITICAL >20s]
+  INR: 3.4 [CRITICAL >3.0]
+  APTT: 74.2s [CRITICAL >60s]
+  D-Dimer: 18.4 mcg/mL [CRITICAL >5.0 — DIC]
+  Fibrinogen: 88 mg/dL [CRITICAL <150 — DIC]
+
+ABG:
+  pH: 7.18 [CRITICAL <7.20 — severe acidosis]
+  PaO2: 48 mmHg [CRITICAL <60 — respiratory failure]
+  SaO2: 72% [CRITICAL <85%]
+  Lactate: 8.2 mmol/L [CRITICAL >4.0 — septic shock]
+  P/F Ratio: 80 [CRITICAL <100 — Severe ARDS]
+  Base Excess: -14.8 [CRITICAL < -10]
+
+RENAL:
+  Creatinine: 8.4 mg/dL [CRITICAL >5.0 — AKI Stage 3]
+  BUN: 148 mg/dL [CRITICAL >100]
+  eGFR: 7 mL/min [CRITICAL <15 — dialysis threshold]
+  K+: 6.9 mEq/L [CRITICAL >6.5 — cardiac arrest risk]
+  Na+: 122 mEq/L [CRITICAL <125 — severe hyponatraemia]
+  Ca: 6.2 mg/dL [CRITICAL <7.0]
+
+LIVER:
+  AST/SGOT: 4,280 IU/L [CRITICAL >1000 — acute liver failure]
+  ALT/SGPT: 3,620 IU/L [CRITICAL >1000]
+  Total Bilirubin: 24.8 mg/dL [CRITICAL >15 — severe jaundice]
+  Albumin: 1.4 g/dL [CRITICAL <2.0 — liver failure]
+  Ammonia: 188 mcmol/L [CRITICAL >100 — hepatic encephalopathy]
+  LDH: 8,840 IU/L [CRITICAL >2000 — massive tissue destruction]
+
+CARDIAC:
+  Troponin-I: 24.8 ng/mL [CRITICAL >0.1 — myocardial infarction]
+  CK-MB: 188 IU/L [CRITICAL >25]
+  BNP: 4,820 pg/mL [CRITICAL >400 — severe heart failure]
+  NT-proBNP: 22,400 pg/mL [CRITICAL >1800]
+
+GLUCOSE/METABOLIC:
+  Blood Glucose: 648 mg/dL [CRITICAL >500 — DKA/HHS]
+  HbA1c: 13.8% [CRITICAL >12% — severe uncontrolled DM]
+  Beta-Hydroxybutyrate: 8.4 mmol/L [CRITICAL >3.0 — DKA]
+  Triglycerides: 2,840 mg/dL [CRITICAL >1000 — pancreatitis risk]
+
+INFLAMMATORY:
+  hsCRP: 248 mg/L [CRITICAL >100 — severe systemic inflammation]
+  Procalcitonin: 42.8 ng/mL [CRITICAL >10 — bacterial sepsis]
+  IL-6: 1,480 pg/mL [CRITICAL >100 — cytokine storm]
+  Ferritin: 42,800 ng/mL [CRITICAL >10,000 — hyperinflammation/MAS]
+  SOFA Score: 18/24 [CRITICAL ≥12 — septic shock mortality >70%]
+
+THYROID (STORM):
+  TSH: 0.02 mIU/L [CRITICAL <0.1 — storm]
+  fT4: 4.82 ng/dL [CRITICAL >3.0]
+  fT3: 8.8 pg/mL [CRITICAL >7.0]
+
+TUMOUR MARKERS:
+  AFP: 8,420 ng/mL [CRITICAL >1000 — HCC suspected]
+  CA 19-9: 4,180 U/mL [CRITICAL >1000 — biliary/pancreatic]
+  M-spike on SPEP: POSITIVE [CRITICAL — myeloma screen]
+
+CSF (MENINGITIS):
+  Opening pressure: 380 mm H2O [CRITICAL >200]
+  WBC: 4,200 cells/cumm [CRITICAL >1000 — bacterial meningitis]
+  CSF Glucose: 18 mg/dL [CRITICAL <40 — bacterial meningitis]
+  CSF Protein: 820 mg/dL [CRITICAL >100]
+  Gram Stain: Gram +ve Diplococci [PNEUMOCOCCAL MENINGITIS]
+
+=== CLINICAL PRESENTATION (SYMPTOMS) ===
+NEUROLOGICAL: Severe headache, photophobia, neck stiffness, Kernig+/Brudzinski+, GCS 9/15, seizure
+RESPIRATORY: SpO2 72% room air, RR 36/min, accessory muscles, bilateral crackles, haemoptysis, central cyanosis
+CARDIOVASCULAR: Crushing chest pain, HR 138 bpm, BP 72/44 mmHg, JVD, bilateral pitting oedema +++, muffled heart sounds
+GASTROINTESTINAL: Haematemesis 400mL, deep jaundice, hepatomegaly 18cm, ascites, melaena
+RENAL: Oliguria <20mL/hr, cola-coloured urine (myoglobinuria), anasarca
+METABOLIC: Fever 40.2°C, weight loss 18kg/3months, polydipsia, tremors, heat intolerance (thyroid storm)
+MUSCULOSKELETAL: Proximal myalgia, foot gangrene diabetic ulcer Grade 4, septic arthritis right knee
+HAEMATOLOGICAL: Purpura, petechiae, spontaneous bruising, gum bleeding, epistaxis, pallor +++
+PSYCHIATRIC: Disorientation, auditory hallucinations, paranoia — hepatic + uraemic encephalopathy Grade III
+
+=== TRIAGE RULE ===
+ANY patient matching ≥3 of the following = IMMEDIATE HIGH PRIORITY (Score 90-100):
+- Troponin-I >1.0 ng/mL
+- Lactate >4.0 mmol/L
+- BP <90/60 mmHg (Shock)
+- SpO2 <85% on any FiO2
+- GCS <12
+- Creatinine >5.0 mg/dL acute
+- Platelet <50,000 with bleeding
+- INR >2.5 with active coagulopathy
+- pH <7.25
+- qSOFA ≥2 or SOFA ≥10
+- Glucose >500 mg/dL with ketones
+- CSF pleocytosis >500 cells
+
+=== IMMEDIATE ACTIONS REQUIRED ===
+1. IV Ceftriaxone 2g q12h + Dexamethasone 10mg q6h (meningitis)
+2. Noradrenaline vasopressor (septic shock), Meropenem + Vancomycin + Antifungal
+3. Emergency PCI / Thrombolysis (STEMI)
+4. Mechanical ventilation, lung-protective (ARDS)
+5. IV Insulin protocol + aggressive fluid resuscitation (DKA/HHS)
+6. IV Hydrocortisone 100mg q8h (Addisonian crisis)
+7. PTU + Lugol's iodine + beta-blockers (Thyroid Storm)
+8. Emergency CRRT/Dialysis (AKI Stage 3, K+ 6.9)
+9. FFP + Cryoprecipitate + Platelets (DIC)
+10. 4 units pRBC transfusion (Hb 5.8)
+11. Liver transplant team consultation (ALF)
+12. Bone marrow biopsy + Haematology oncology (malignancy)

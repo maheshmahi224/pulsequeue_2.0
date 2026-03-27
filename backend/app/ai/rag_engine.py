@@ -34,14 +34,14 @@ def load_documents(docs_path: str) -> List[str]:
             logger.warning(f"Failed to read {f}: {e}")
     return docs
 
-def chunk_documents(docs: List[str], chunk_size: int = 500, overlap: int = 50) -> List[dict]:
+def chunk_documents(docs: List[str], chunk_size: int = 800, overlap: int = 80) -> List[dict]:
     chunks = []
-    for doc in docs:
+    for doc_idx, doc in enumerate(docs):
         words = doc.split()
         step = chunk_size - overlap
         for i in range(0, max(1, len(words) - overlap), step):
             chunk_words = words[i:i + chunk_size]
-            chunks.append({"text": " ".join(chunk_words), "source": f"doc_{len(chunks)}"})
+            chunks.append({"text": " ".join(chunk_words), "source": f"doc_{doc_idx}_chunk_{len(chunks)}"})
     return chunks
 
 def build_index(chunks: List[dict]) -> bool:
@@ -65,7 +65,7 @@ def build_index(chunks: List[dict]) -> bool:
         logger.error(f"FAISS index build failed: {e}")
         return False
 
-def retrieve_context(query: str, k: int = 3) -> Tuple[str, List[str]]:
+def retrieve_context(query: str, k: int = 5) -> Tuple[str, List[str]]:
     global _index, _chunks
     embedder = _get_embedder()
     if not embedder or _index is None or not _chunks:
@@ -75,14 +75,15 @@ def retrieve_context(query: str, k: int = 3) -> Tuple[str, List[str]]:
         import numpy as np
         q_emb = embedder.encode([query])
         faiss.normalize_L2(q_emb)
-        distances, indices = _index.search(q_emb.astype("float32"), k)
+        distances, indices = _index.search(q_emb.astype("float32"), min(k, len(_chunks)))
         results = []
         sources = []
         for idx in indices[0]:
             if 0 <= idx < len(_chunks):
                 results.append(_chunks[idx]["text"])
                 sources.append(_chunks[idx]["source"])
-        context = "\n\n".join(results[:k])
+        context = "\n\n".join(results)
+        logger.debug(f"RAG retrieved {len(results)} chunks for query: {query[:60]}")
         return context, sources
     except Exception as e:
         logger.error(f"RAG retrieval failed: {e}")
@@ -93,5 +94,6 @@ async def init_rag(docs_path: str):
     if docs:
         chunks = chunk_documents(docs)
         build_index(chunks)
+        logger.info(f"RAG initialized with {len(docs)} documents, {len(chunks)} chunks")
     else:
         logger.warning("No RAG documents found. Running without RAG context.")

@@ -1,11 +1,13 @@
 "use client";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
   RefreshCw, AlertTriangle, Clock, Search, ChevronRight,
-  Users, Filter, Zap, TrendingUp
+  Users, Zap, Wifi, WifiOff
 } from "lucide-react";
 import apiClient from "@/lib/apiClient";
+
+const AUTO_REFRESH_SEC = 15;
 
 function PriorityBadge({ priority }: { priority: string }) {
   if (priority === "HIGH") return <span className="priority-high">HIGH</span>;
@@ -18,17 +20,35 @@ function RiskBar({ score }: { score: number }) {
   return (
     <div className="flex items-center gap-2 min-w-[80px]">
       <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-        <div className="h-full rounded-full" style={{ width: `${score}%`, backgroundColor: color }} />
+        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${score}%`, backgroundColor: color }} />
       </div>
       <span className="text-xs font-bold w-6 text-right" style={{ color }}>{score}</span>
     </div>
   );
 }
 
+// Countdown ring for auto-refresh
+function RefreshCountdown({ seconds, total }: { seconds: number; total: number }) {
+  const pct = (seconds / total) * 100;
+  const r = 10; const circ = 2 * Math.PI * r;
+  const dash = circ * (1 - pct / 100);
+  return (
+    <div className="relative w-8 h-8 flex items-center justify-center" title={`Auto-refresh in ${seconds}s`}>
+      <svg className="w-8 h-8 -rotate-90 absolute" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r={r} fill="none" stroke="#e5e7eb" strokeWidth="2" />
+        <circle cx="12" cy="12" r={r} fill="none" stroke="#3b82f6" strokeWidth="2"
+          strokeDasharray={circ} strokeDashoffset={dash}
+          style={{ transition: "stroke-dashoffset 1s linear" }} />
+      </svg>
+      <span className="text-[9px] font-bold text-blue-600 z-10">{seconds}</span>
+    </div>
+  );
+}
+
 const SECTIONS = [
-  { label: "CRITICAL", priority: "HIGH", color: "text-red-600", bg: "bg-red-50", border: "border-red-200", dot: "bg-red-500", rowHover: "hover:bg-red-50 hover:border-red-200" },
-  { label: "MODERATE", priority: "MEDIUM", color: "text-orange-600", bg: "bg-orange-50", border: "border-orange-200", dot: "bg-orange-500", rowHover: "hover:bg-orange-50 hover:border-orange-200" },
-  { label: "STABLE", priority: "LOW", color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200", dot: "bg-emerald-500", rowHover: "hover:bg-emerald-50 hover:border-emerald-200" },
+  { label: "CRITICAL", priority: "HIGH",   color: "text-red-600",     bg: "bg-red-50",     border: "border-red-200",    dot: "bg-red-500",    rowHover: "hover:bg-red-50 hover:border-red-200" },
+  { label: "MODERATE", priority: "MEDIUM", color: "text-orange-600",  bg: "bg-orange-50",  border: "border-orange-200", dot: "bg-orange-500", rowHover: "hover:bg-orange-50 hover:border-orange-200" },
+  { label: "STABLE",   priority: "LOW",    color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200",dot: "bg-emerald-500",rowHover: "hover:bg-emerald-50 hover:border-emerald-200" },
 ];
 
 export default function QueuePage() {
@@ -40,6 +60,10 @@ export default function QueuePage() {
   const [search, setSearch] = useState("");
   const [priorityFilter, setPriorityFilter] = useState("ALL");
   const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [countdown, setCountdown] = useState(AUTO_REFRESH_SEC);
+  const [online, setOnline] = useState(true);
+  const countdownRef = useRef<NodeJS.Timeout | null>(null);
+  const fetchRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchQueue = useCallback(async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
@@ -47,15 +71,33 @@ export default function QueuePage() {
       const res = await apiClient.get("/doctor/queue");
       const q = res.data.data.queue || [];
       setQueue(q);
-      setFiltered(q);
       setLastUpdated(new Date());
-    } catch {}
+      setOnline(true);
+    } catch {
+      setOnline(false);
+    }
     setLoading(false);
     setRefreshing(false);
+    // Reset countdown after fetch
+    setCountdown(AUTO_REFRESH_SEC);
   }, []);
 
-  useEffect(() => { fetchQueue(); }, [fetchQueue]);
+  // Auto-refresh every AUTO_REFRESH_SEC seconds
+  useEffect(() => {
+    fetchQueue();
+    fetchRef.current = setInterval(() => fetchQueue(false), AUTO_REFRESH_SEC * 1000);
+    return () => { if (fetchRef.current) clearInterval(fetchRef.current); };
+  }, [fetchQueue]);
 
+  // Countdown ticker
+  useEffect(() => {
+    countdownRef.current = setInterval(() => {
+      setCountdown(c => (c <= 1 ? AUTO_REFRESH_SEC : c - 1));
+    }, 1000);
+    return () => { if (countdownRef.current) clearInterval(countdownRef.current); };
+  }, []);
+
+  // Filter
   useEffect(() => {
     let result = queue;
     if (priorityFilter !== "ALL") result = result.filter(p => p.priority === priorityFilter);
@@ -78,19 +120,41 @@ export default function QueuePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-slide-up">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Patient Triage Queue</h1>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            Patient Triage Queue
+            {!online && <WifiOff className="w-4 h-4 text-red-400" aria-label="Connection issue" />}
+            {online && !loading && <Wifi className="w-4 h-4 text-green-400" />}
+          </h1>
           <p className="text-sm text-gray-400 mt-0.5">
-            {queue.length} patients · Updated {lastUpdated.toLocaleTimeString()}
+            {queue.length} patients waiting · Last updated {lastUpdated.toLocaleTimeString()}
           </p>
         </div>
-        <button
-          onClick={() => fetchQueue(true)}
-          disabled={refreshing}
-          className="btn-secondary flex items-center gap-2 text-sm self-start"
-        >
-          <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
-          Refresh
-        </button>
+        <div className="flex items-center gap-2 self-start">
+          <RefreshCountdown seconds={countdown} total={AUTO_REFRESH_SEC} />
+          <button
+            onClick={() => { fetchQueue(true); setCountdown(AUTO_REFRESH_SEC); }}
+            disabled={refreshing}
+            className="btn-secondary flex items-center gap-2 text-sm"
+          >
+            <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+            {refreshing ? "Refreshing…" : "Refresh Now"}
+          </button>
+        </div>
+      </div>
+
+      {/* Stats strip */}
+      <div className="grid grid-cols-4 gap-3 animate-slide-up" style={{ animationDelay: "60ms" }}>
+        {[
+          { label: "Total", val: counts.ALL, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
+          { label: "Critical", val: counts.HIGH, color: "text-red-600", bg: "bg-red-50", border: "border-red-100" },
+          { label: "Moderate", val: counts.MEDIUM, color: "text-orange-600", bg: "bg-orange-50", border: "border-orange-100" },
+          { label: "Stable", val: counts.LOW, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+        ].map(({ label, val, color, bg, border }) => (
+          <div key={label} className={`${bg} border ${border} rounded-2xl p-3 text-center`}>
+            <div className={`text-2xl font-bold ${color}`}>{val}</div>
+            <div className="text-xs text-gray-500">{label}</div>
+          </div>
+        ))}
       </div>
 
       {/* Filter bar */}
@@ -127,6 +191,12 @@ export default function QueuePage() {
         </div>
       </div>
 
+      {/* Auto-refresh notice */}
+      <div className="flex items-center gap-2 text-xs text-gray-400 px-1">
+        <Zap className="w-3 h-3 text-blue-400" />
+        Queue auto-updates every {AUTO_REFRESH_SEC}s · Positions recalculate instantly when a patient is admitted or referred
+      </div>
+
       {/* Content */}
       {loading ? (
         <div className="space-y-3">
@@ -139,7 +209,7 @@ export default function QueuePage() {
           <Users className="w-14 h-14 text-gray-200 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-600 mb-1">No patients found</h3>
           <p className="text-sm text-gray-400">
-            {search || priorityFilter !== "ALL" ? "Try adjusting your filters" : "Queue is empty right now"}
+            {search || priorityFilter !== "ALL" ? "Try adjusting your filters" : "Queue is empty — all patients attended to"}
           </p>
         </div>
       ) : (
@@ -157,9 +227,9 @@ export default function QueuePage() {
                 <div className="space-y-2">
                   {patients.map((patient, i) => (
                     <div
-                      key={i}
+                      key={patient.report_id || i}
                       onClick={() => router.push(`/dashboard/queue/${patient.report_id}`)}
-                      className={`flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-2xl cursor-pointer transition-all duration-200 border hover:shadow-md ${rowHover} group animate-slide-up`}
+                      className={`flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-2xl cursor-pointer transition-all duration-200 hover:shadow-md ${rowHover} group animate-slide-up`}
                       style={{ animationDelay: `${i * 40}ms` }}
                     >
                       <div className={`w-9 h-9 ${bg} rounded-full flex items-center justify-center ${color} text-sm font-bold shrink-0 border ${border}`}>

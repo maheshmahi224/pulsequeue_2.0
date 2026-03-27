@@ -6,7 +6,8 @@ import { Activity, LayoutDashboard, FileText, ListOrdered, MessageSquare, Settin
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/report", label: "Report Symptoms", icon: FileText },
+  { href: "/dashboard/report", label: "New Report", icon: FileText },
+  { href: "/dashboard/history", label: "My History", icon: Activity },
   { href: "/dashboard/prediction", label: "AI Prediction", icon: Activity },
   { href: "/dashboard/queue", label: "Queue Status", icon: ListOrdered },
   { href: "/dashboard/notes", label: "Doctor Notes", icon: MessageSquare },

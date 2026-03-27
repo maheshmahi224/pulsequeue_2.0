@@ -1,0 +1,130 @@
+PULSEQUEUE RAG REFERENCE — MODERATE MULTI-MORBIDITY CASE (NON-ICU)
+Source: MedPath Diagnostics | Report ID: MPD-2026-034871
+Classification: MEDIUM-HIGH RISK / OUTPATIENT-TO-WARD / RISK SCORE: 55-70/100
+
+=== PATIENT PROFILE ===
+Age: 38 years | Gender: Male | Status: Outpatient (Fasting sample)
+Fasting: 12 hours | Stable — no immediate life threat
+
+=== DIAGNOSES (MULTIPLE CHRONIC + SOME ACUTE CONCERN) ===
+1. TYPE 2 DIABETES MELLITUS — Poorly Controlled (HbA1c 8.2%, FBG 148, PPBS 248, HOMA-IR 10.3)
+2. MIXED DYSLIPIDAEMIA — LDL 141, TG 312, HDL 34, TC 238, VLDL 62 — HIGH cardiovascular risk
+3. CHRONIC KIDNEY DISEASE STAGE 3a — eGFR 52 mL/min, Creatinine 1.68, proteinuria 2+, granular casts
+4. HASHIMOTO'S THYROIDITIS / PRIMARY HYPOTHYROIDISM — TSH 8.72, fT4 0.68 (low), anti-TPO 142
+5. NORMOCYTIC HYPOCHROMIC ANAEMIA (Iron deficiency component) — Hb 10.2, iron 44, TIBC 410, transferrin sat 10.7%
+6. URINARY TRACT INFECTION WITH HAEMATURIA + DIABETIC NEPHROPATHY — pus cells 25-30/HPF, nitrites+, protein 2+
+7. ELEVATED CARDIAC BIOMARKERS — Troponin-I 0.08 ng/mL (borderline, requires ECG/ECHO urgently)
+8. SYSTEMIC INFLAMMATION + THROMBOTIC RISK — hsCRP 14.2, IL-6 32, D-Dimer 1.82, Fibrinogen 520
+9. HEPATOCELLULAR DYSFUNCTION — AST 68, ALT 82, ALP 148, Bilirubin 2.4, Albumin 3.2 (low)
+10. MULTIPLE MICRONUTRIENT DEFICIENCIES — Vit D 9.4, B12 148, Folate 2.8, B6 4.2, Iron deficient, Zinc 58
+
+=== LAB VALUES (MODERATE RISK REFERENCE THRESHOLDS) ===
+
+CBC:
+  Haemoglobin: 10.2 g/dL [L — mild anaemia, not transfusion-critical]
+  WBC: 11,400 cells/cumm [mildly elevated — monitor infection]
+  Neutrophils: 74% [elevated — suggest bacterial process]
+  Platelets: 1,42,000 [borderline low — safety margin present]
+  ESR: 34 mm/hr [elevated — systemic inflammation]
+
+LIVER:
+  Total Bilirubin: 2.4 mg/dL [elevated — investigate cause]
+  AST: 68 IU/L [moderate elevation — hepatocellular dysfunction]
+  ALT: 82 IU/L [moderate elevation]
+  ALP: 148 IU/L [borderline high]
+  GGT: 78 IU/L [elevated — rule out alcohol/fatty liver]
+  Albumin: 3.2 g/dL [low — watch nutrition/hepatic function]
+
+RENAL:
+  Creatinine: 1.68 mg/dL [elevated — CKD Stage 3a]
+  eGFR: 52 mL/min [L — significant renal impairment]
+  BUN: 28 mg/dL [mildly elevated]
+  Uric Acid: 8.4 mg/dL [H — gout risk]
+  K+: 5.3 mEq/L [borderline high — CKD-related]
+  Phosphorus: 4.9 mg/dL [H — hyperphosphataemia in CKD]
+
+LIPIDS:
+  Total Cholesterol: 238 mg/dL [H — high CV risk]
+  LDL: 141 mg/dL [H — statin needed]
+  Triglycerides: 312 mg/dL [H — fibrate/dietary intervention]
+  HDL: 34 mg/dL [L — poor protective factor]
+
+DIABETES:
+  FBG: 148 mg/dL [H — diabetes]
+  PPBS: 248 mg/dL [H — poorly controlled]
+  HbA1c: 8.2% [H — poorly controlled T2DM]
+  HOMA-IR: 10.3 [H >2.5 — significant insulin resistance]
+
+THYROID:
+  TSH: 8.72 mIU/L [H >4.5 — hypothyroidism]
+  fT4: 0.68 ng/dL [L — overt hypothyroidism]
+  fT3: 2.1 pg/mL [L]
+  Anti-TPO: 142 IU/mL [H — Hashimoto's autoimmune]
+
+CARDIAC/INFLAMMATORY:
+  hsCRP: 14.2 mg/L [H — moderate systemic inflammation]
+  Troponin-I: 0.08 ng/mL [borderline H >0.04 — needs ECG urgently]
+  BNP: 310 pg/mL [H >100 — cardiac stress]
+  D-Dimer: 1.82 mcg/mL [H — thrombotic risk, not DIC range]
+  Ferritin: 680 ng/mL [H — inflammation marker]
+  IL-6: 32 pg/mL [H — systemic inflammation]
+  Procalcitonin: 0.38 ng/mL [H — possible bacterial infection]
+  Homocysteine: 22 mcmol/L [H — CV risk factor]
+
+VITAMINS/MINERALS:
+  Vitamin D: 9.4 ng/mL [Severe deficiency <12]
+  Vitamin B12: 148 pg/mL [Low — supplementation needed]
+  Folate: 2.8 ng/mL [Low — nutritional anaemia risk]
+  Serum Iron: 44 mcg/dL [Low — iron deficiency]
+  TIBC: 410 mcg/dL [H — iron deficiency pattern]
+  Transferrin Saturation: 10.7% [L <20% — iron deficiency confirmed]
+
+URINE:
+  Protein: 2+ (moderate) [proteinuria — diabetic nephropathy]
+  Glucose: 3+ [glycosuria — diabetes]
+  Pus cells: 25-30/HPF [H — UTI]
+  Granular Casts: 2-4/LPF [H — renal tubular damage]
+  Nitrites: Positive [bacterial infection]
+
+=== CLINICAL PRESENTATION (SYMPTOMS) ===
+GENERAL: Fatigue, weakness, weight changes
+RENAL: Mild puffiness, possible dysuria, reduced urine clarity
+ENDOCRINE: Cold intolerance, weight gain (hypothyroidism), polyuria/polydipsia (DM)
+CARDIOVASCULAR: Exertional dyspnoea (mild), no chest pain at rest — but cardiac biomarkers borderline
+MUSCULOSKELETAL: Muscle cramps, joint aches (possibly gout-related)
+
+=== TRIAGE RULE ===
+Patient matches MEDIUM risk pattern:
+- Troponin borderline elevated — ECG within 2 hours mandatory
+- CKD Stage 3a — nephrology referral within 1 week
+- Poorly controlled diabetes — diabetologist within 48 hours
+- UTI active — antibiotic within 24 hours + urine culture
+- BNP 310 — echocardiography urgently advised
+- Multiple deficiencies — supplementation immediately
+
+PRIORITY: MEDIUM — See within 4-8 hours | Monitor cardiac status closely
+
+=== RECOMMENDED IMMEDIATE ACTIONS ===
+1. ECG and ECHO for Troponin 0.08 + BNP 310 (rule out NSTEMI)
+2. Urine culture and sensitivity (UTI — E. coli likely given nitrites)
+3. Start Levothyroxine for hypothyroidism (TSH 8.72)
+4. Optimise antidiabetic medications (HbA1c 8.2%) — consider SGLT2i for renal protection
+5. High-intensity statin (Rosuvastatin 20-40mg) + Fenofibrate for TG 312
+6. Vitamin D3 60,000 IU weekly x 8 weeks → maintenance
+7. Vitamin B12 injection (Cyanocobalamin 1000mcg IM x3 weeks)
+8. Folate + B6 supplementation, Iron supplementation
+9. Nephrology referral — 24hr urine protein, renal USG
+10. Hepatitis serology + abdominal USG (transaminase elevation)
+11. Peripheral blood smear for anaemia characterisation
+
+=== DISEASE PREDICTIONS FROM THIS PATTERN ===
+Primary: Type 2 Diabetes Mellitus, Hypothyroidism (Hashimoto's), CKD Stage 3
+Secondary: Mixed Dyslipidaemia, Iron Deficiency Anaemia, UTI
+Watch: NSTEMI/Cardiac event risk (borderline Troponin + BNP), Diabetic Nephropathy progression
+
+=== COMPARISON: CRITICAL vs MODERATE SCORING GUIDE ===
+RISK SCORE 90-100 = ICU (critical values ≥5 systems, shock, mechanical ventilation)
+RISK SCORE 70-89  = HIGH (active STEMI/Stroke/Sepsis/DKA/ARDS without multi-organ failure)
+RISK SCORE 50-69  = MEDIUM (multiple chronic conditions, one system acutely decompensating, borderline cardiac markers)
+RISK SCORE 30-49  = LOW-MEDIUM (2-3 chronic conditions, well-controlled, no acute decompensation)
+RISK SCORE 10-29  = LOW (minor issues, preventive workup, normal vitals, no organopathy)
