@@ -12,7 +12,6 @@ load_dotenv()
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from passlib.context import CryptContext
-import certifi
 from datetime import datetime, timezone, timedelta
 import uuid
 import random
@@ -115,7 +114,7 @@ def calc_risk(age, vitals, symptoms, emergency, history):
     if history.get("heart_disease"): score += 10
     if history.get("hypertension"): score += 6
     if history.get("diabetes"): score += 5
-    return min(round(score, 1), 100.0)
+    return min(int(round(score)), 100)
 
 def get_priority(score, emergency):
     if any(emergency.values()): return "HIGH"
@@ -145,7 +144,7 @@ async def seed():
             "role": "doctor",
             "created_at": utcnow()
         })
-        print(f"  ✓ {doc['name']} | email: {doc['email']} | password: doctor123")
+        print(f"  [OK] {doc['name']} | email: {doc['email']} | password: doctor123")
 
     print("\nSeeding patients and queue...")
     for i, p in enumerate(PATIENTS):
@@ -203,7 +202,7 @@ async def seed():
             "status": "waiting"
         }
         await db.queue.insert_one(queue_doc)
-        print(f"  ✓ {p['name']} | {priority} | Risk: {risk_score} | email: {p['email']} | password: patient123")
+        print(f"  [OK] {p['name']} | {priority} | Risk: {risk_score} | email: {p['email']} | password: patient123")
 
     # Recalculate positions
     docs = []

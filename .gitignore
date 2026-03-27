@@ -1,16 +1,46 @@
-﻿node_modules/
+# Dependencies
+node_modules/
 .next/
 out/
 build/
-*.log
-*.zip
-*.msi
-node-v20.11.1-win-x64/
-mongodb-win32-x86_64-windows-7.0.5/
-data/
-backend/.env
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Env secrets
+backend/.env
+
+# Logs & temp
+*.log
+seed.log
+
+# Large binary downloads (portable tools)
+*.zip
+*.msi
+mongo.zip
+node.zip
+mongodb-win32-x86_64-windows-7.0.5/
+mongodb-windows-x86_64-7.0.5/
+node-v20.11.1-win-x64/
+
+# MongoDB data directory
+data/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
 .vscode/
 .idea/
+
+# FAISS index (generated at runtime)
+backend/rag-knowledge/faiss_index/
+
+# Next.js build cache
+.next/

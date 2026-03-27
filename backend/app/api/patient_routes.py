@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
 from app.services.patient_service import process_patient_report, get_patient_profile, get_queue_status
@@ -35,6 +35,8 @@ class ReportRequest(BaseModel):
     emergency_flags: EmergencyModel = EmergencyModel()
     age: int = 30
 
+# ── Specific routes FIRST (must come before /{patient_id} wildcard) ────────────
+
 @router.post("/report")
 async def submit_report(body: ReportRequest):
     result = await process_patient_report(
@@ -49,28 +51,29 @@ async def submit_report(body: ReportRequest):
     )
     return success_response(result, "Report submitted successfully")
 
-@router.get("/{patient_id}")
-async def get_patient(patient_id: str):
-    profile = await get_patient_profile(patient_id)
-    if not profile:
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail="Patient not found")
-    return success_response(profile)
-
 @router.get("/queue-status/{patient_id}")
 async def queue_status(patient_id: str):
     status = await get_queue_status(patient_id)
     return success_response(status)
+
+@router.get("/report/{report_id}")
+async def get_report_detail(report_id: str):
+    report = await get_report(report_id)
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    return success_response(report)
 
 @router.get("/{patient_id}/notes")
 async def patient_notes(patient_id: str):
     notes = await get_patient_notes(patient_id)
     return success_response({"notes": notes})
 
-@router.get("/report/{report_id}")
-async def get_report_detail(report_id: str):
-    report = await get_report(report_id)
-    if not report:
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail="Report not found")
-    return success_response(report)
+# ── Wildcard route LAST ────────────────────────────────────────────────────────
+
+@router.get("/{patient_id}")
+async def get_patient(patient_id: str):
+    profile = await get_patient_profile(patient_id)
+    if not profile:
+        raise HTTPException(status_code=404, detail="Patient not found")
+    return success_response(profile)
+
