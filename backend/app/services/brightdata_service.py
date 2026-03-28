@@ -101,35 +101,64 @@ def _write_cache(url: str, text: str):
 # ── Bright Data fetch ─────────────────────────────────────────────────────────
 
 async def _fetch_via_brightdata(url: str, timeout: int = 20) -> Optional[str]:
-    """Fetch a URL through Bright Data Web Unlocker, returns plain text."""
+    """
+    Fetch a URL through Bright Data Web Unlocker, returns plain text.
+    Falls back to direct httpx fetch if Bright Data returns an error.
+    MedlinePlus is a US government site — public and no IP blocking.
+    """
+    import re
+
+    def _strip_html(raw: str) -> str:
+        raw = re.sub(r"<script[^>]*>.*?</script>", " ", raw, flags=re.DOTALL)
+        raw = re.sub(r"<style[^>]*>.*?</style>", " ", raw, flags=re.DOTALL)
+        raw = re.sub(r"<[^>]+>", " ", raw)
+        raw = re.sub(r"\s+", " ", raw).strip()
+        lines = [l.strip() for l in raw.split(".") if len(l.strip()) > 40]
+        return ". ".join(lines[:200])
+
+    # ── Try Bright Data Web Unlocker (multiple zone name variants) ────────────
+    zone_candidates = ["web_unlocker1", "web_unlocker", "unlocker", "residential"]
     headers = {
         "Authorization": f"Bearer {BRIGHTDATA_API_KEY}",
         "Content-Type": "application/json",
     }
-    payload = {
-        "zone": "unlocker",
-        "url": url,
-        "format": "raw",
-    }
+    for zone in zone_candidates:
+        payload = {"zone": zone, "url": url, "format": "raw", "method": "GET"}
+        try:
+            async with httpx.AsyncClient(timeout=timeout) as client:
+                resp = await client.post(BRIGHTDATA_UNLOCKER_URL, headers=headers, json=payload)
+                if resp.status_code == 200 and len(resp.text) > 200:
+                    logger.info(f"[BrightData] ✓ zone='{zone}' succeeded for {url}")
+                    return _strip_html(resp.text)
+                else:
+                    logger.debug(
+                        f"[BrightData] zone='{zone}' → {resp.status_code}: {resp.text[:120]}"
+                    )
+        except Exception as e:
+            logger.debug(f"[BrightData] zone='{zone}' exception: {e}")
+
+    # ── Fallback: direct httpx request (MedlinePlus is public) ───────────────
+    logger.info(f"[BrightData] All zones failed → falling back to direct fetch: {url}")
     try:
-        async with httpx.AsyncClient(timeout=timeout) as client:
-            resp = await client.post(BRIGHTDATA_UNLOCKER_URL, headers=headers, json=payload)
-            if resp.status_code == 200:
-                # Strip HTML tags very simply for RAG ingestion
-                import re
-                text = resp.text
-                text = re.sub(r"<script[^>]*>.*?</script>", " ", text, flags=re.DOTALL)
-                text = re.sub(r"<style[^>]*>.*?</style>", " ", text, flags=re.DOTALL)
-                text = re.sub(r"<[^>]+>", " ", text)
-                text = re.sub(r"\s+", " ", text).strip()
-                # Keep only meaningful content (skip nav/footer noise)
-                lines = [l.strip() for l in text.split(".") if len(l.strip()) > 40]
-                return ". ".join(lines[:200])  # ~200 sentences of real content
+        async with httpx.AsyncClient(
+            timeout=15,
+            headers={
+                "User-Agent": (
+                    "Mozilla/5.0 (compatible; PulseQueue-MedRef/1.0; "
+                    "+https://github.com/maheshmahi224/pulsequeue_2.0)"
+                )
+            },
+            follow_redirects=True,
+        ) as client:
+            resp = await client.get(url)
+            if resp.status_code == 200 and len(resp.text) > 200:
+                logger.info(f"[BrightData] Direct fetch OK: {url}")
+                return _strip_html(resp.text)
             else:
-                logger.warning(f"Bright Data returned {resp.status_code} for {url}")
+                logger.warning(f"[BrightData] Direct fetch failed ({resp.status_code}): {url}")
                 return None
     except Exception as e:
-        logger.warning(f"Bright Data fetch failed for {url}: {e}")
+        logger.warning(f"[BrightData] Direct fetch exception for {url}: {e}")
         return None
 
 
