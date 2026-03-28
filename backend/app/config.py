@@ -18,3 +18,8 @@ AI_TIMEOUT = int(os.getenv("AI_TIMEOUT", "10"))
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 RAG_DOCS_PATH = os.getenv("RAG_DOCS_PATH", "rag-knowledge/medical_docs")
 FAISS_INDEX_PATH = os.getenv("FAISS_INDEX_PATH", "rag-knowledge/faiss_index")
+
+# Bright Data — Web Unlocker for live medical reference enrichment
+BRIGHTDATA_API_KEY = os.getenv("BRIGHTDATA_API_KEY", "741b4eab-6c2e-4c6d-9f00-bcbfb8a9dd2f")
+BRIGHTDATA_ENABLED = os.getenv("BRIGHTDATA_ENABLED", "true").lower() == "true"
+BRIGHTDATA_CACHE_TTL_HOURS = int(os.getenv("BRIGHTDATA_CACHE_TTL_HOURS", "24"))
